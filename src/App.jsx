@@ -1,90 +1,195 @@
 export default function NodeVaultPortfolio() {
+  const systems = [
+    {
+      name: "Home Assistant",
+      icon: "🏠",
+      status: "ONLINE",
+      description:
+        "Smart home control, dashboards, automations, climate and connected devices.",
+    },
+    {
+      name: "Proxmox Cluster",
+      icon: "🖥️",
+      status: "ONLINE",
+      description:
+        "Virtualization infrastructure running VMs, containers, services and backups.",
+    },
+    {
+      name: "Jellyfin",
+      icon: "🎬",
+      status: "ONLINE",
+      description:
+        "Self-hosted media platform connected to the home NAS and local media library.",
+    },
+    {
+      name: "Immich",
+      icon: "📸",
+      status: "ONLINE",
+      description:
+        "Private photo management and backup running inside the NodeVault environment.",
+    },
+    {
+      name: "Grafana + Prometheus",
+      icon: "📊",
+      status: "MONITORED",
+      description:
+        "Infrastructure monitoring, metrics and visual dashboards across the homelab.",
+    },
+    {
+      name: "Uptime Kuma",
+      icon: "📡",
+      status: "MONITORING",
+      description:
+        "Service monitoring for the systems and applications running across the network.",
+    },
+    {
+      name: "WLED Matrix",
+      icon: "💡",
+      status: "ACTIVE",
+      description:
+        "Custom LED matrix system with animations, football data and Home Assistant integration.",
+    },
+    {
+      name: "Zigbee2MQTT",
+      icon: "📶",
+      status: "ONLINE",
+      description:
+        "Local Zigbee infrastructure connecting smart home sensors, switches and devices.",
+    },
+    {
+      name: "Ollama / AI",
+      icon: "🧠",
+      status: "ACTIVE",
+      description:
+        "Local AI models running inside the homelab without relying entirely on cloud services.",
+    },
+    {
+      name: "Paperless-ngx",
+      icon: "📄",
+      status: "ONLINE",
+      description:
+        "Digital document management and automated document archiving.",
+    },
+    {
+      name: "Vaultwarden",
+      icon: "🔐",
+      status: "ONLINE",
+      description:
+        "Self-hosted password management running securely within NodeVault.",
+    },
+    {
+      name: "MeshCentral",
+      icon: "🛰️",
+      status: "ONLINE",
+      description:
+        "Remote management and administration of machines across the homelab.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-[-200px] left-[-150px] w-[500px] h-[500px] bg-cyan-500/20 blur-3xl rounded-full animate-pulse" />
-        <div className="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-blue-600/20 blur-3xl rounded-full animate-pulse" />
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+
+      {/* Background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-[40%] -right-40 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl" />
 
         <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
+              "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         />
       </div>
 
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/30">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
-          <div className="text-2xl font-bold tracking-[0.3em] text-cyan-400">
-            NODEVAULT
-          </div>
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
-          <div className="hidden md:flex gap-8 text-sm text-gray-300">
-            <a href="#about" className="hover:text-cyan-400 transition">About</a>
-            <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
-            <a href="#systems" className="hover:text-cyan-400 transition">Systems</a>
-            <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
+          <a
+            href="#home"
+            className="text-2xl font-bold tracking-[0.35em] text-cyan-400"
+          >
+            NODEVAULT
+          </a>
+
+          <div className="hidden md:flex gap-8 text-sm text-gray-400">
+            <a href="#about" className="hover:text-cyan-400 transition">
+              About
+            </a>
+            <a href="#systems" className="hover:text-cyan-400 transition">
+              Systems
+            </a>
+            <a href="#overview" className="hover:text-cyan-400 transition">
+              Overview
+            </a>
+            <a href="#contact" className="hover:text-cyan-400 transition">
+              Contact
+            </a>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-5xl text-center z-10">
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 backdrop-blur-xl mb-8">
-            <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-cyan-300 text-sm tracking-widest">
-              SYSTEM STATUS: ONLINE
-            </span>
+      <section
+        id="home"
+        className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-20"
+      >
+        <div className="max-w-5xl mx-auto text-center">
+
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 text-cyan-300 text-sm tracking-widest mb-10">
+            <span className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_12px_rgba(74,222,128,0.8)]" />
+            NODEVAULT SYSTEM STATUS: ONLINE
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-black leading-none mb-8 tracking-tight">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-[0.9]">
             BUILDING THE
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-transparent bg-clip-text">
-              FUTURE OF
-            </span>
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+              FUTURE
+            </span>{" "}
+            OF
             <br />
-            HOMELABS
+            HOME LABS
           </h1>
 
-          <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-400 leading-8 mb-12">
-            Smart home automation, Proxmox infrastructure,
-            Home Assistant dashboards, WLED systems,
-            networking and futuristic UI experiences.
+          <p className="mt-10 max-w-3xl mx-auto text-lg md:text-xl text-gray-400 leading-8">
+            A personal infrastructure built around automation, virtualization,
+            self-hosting, networking, AI and futuristic interfaces.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-5">
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
             <a
-              href="#projects"
-              className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold hover:scale-105 transition duration-300 shadow-2xl shadow-cyan-500/30"
+              href="#systems"
+              className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-600 font-semibold hover:scale-105 transition shadow-[0_0_35px_rgba(34,211,238,0.25)]"
             >
               Explore Systems
             </a>
 
             <a
-              href="#contact"
-              className="px-8 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white/10 transition"
+              href="#overview"
+              className="px-8 py-4 rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 transition"
             >
-              Contact
+              System Overview
             </a>
           </div>
+
         </div>
       </section>
 
       {/* About */}
-      <section id="about" className="relative z-10 max-w-6xl mx-auto px-6 py-32">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section id="about" className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+
           <div>
-            <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
+            <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-5">
               About NodeVault
             </div>
 
-            <h2 className="text-5xl font-bold mb-8 leading-tight">
+            <h2 className="text-5xl md:text-6xl font-bold leading-tight">
               Infrastructure.
               <br />
               Automation.
@@ -92,235 +197,206 @@ export default function NodeVaultPortfolio() {
               Design.
             </h2>
 
-            <p className="text-gray-400 text-lg leading-8">
-              I build high-performance homelab environments
-              powered by Proxmox, Home Assistant,
-              Zigbee2MQTT and modern automation systems.
-              Focused on stability, scalability and futuristic UI design.
+            <p className="mt-8 text-gray-400 text-lg leading-8 max-w-xl">
+              NodeVault is my personal homelab environment where
+              infrastructure, automation and technology come together.
+              Everything is designed around reliability, control and the
+              freedom to run services locally.
             </p>
           </div>
 
-          <div className="relative">
-            <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-2xl shadow-cyan-500/10">
-              <div className="flex items-center justify-between mb-8">
-                <div>
-                  <div className="text-sm text-gray-500 uppercase tracking-widest">
-                    NODE STATUS
-                  </div>
-                  <div className="text-2xl font-bold text-cyan-400 mt-2">
-                    OPERATIONAL
-                  </div>
+          <div className="rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8 shadow-2xl">
+
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <div className="text-gray-500 text-sm tracking-widest">
+                  NODE STATUS
                 </div>
 
-                <div className="w-5 h-5 rounded-full bg-green-400 animate-pulse" />
-              </div>
-
-              <div className="space-y-5 text-sm">
-                <div className="flex justify-between border-b border-white/5 pb-3">
-                  <span className="text-gray-400">Hypervisor</span>
-                  <span>Proxmox VE</span>
-                </div>
-
-                <div className="flex justify-between border-b border-white/5 pb-3">
-                  <span className="text-gray-400">Automation</span>
-                  <span>Home Assistant</span>
-                </div>
-
-                <div className="flex justify-between border-b border-white/5 pb-3">
-                  <span className="text-gray-400">Lighting</span>
-                  <span>WLED Matrix</span>
-                </div>
-
-                <div className="flex justify-between border-b border-white/5 pb-3">
-                  <span className="text-gray-400">Network</span>
-                  <span>VLAN Segmented</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Uptime</span>
-                  <span className="text-green-400">99.9%</span>
+                <div className="text-2xl font-bold text-cyan-400 mt-2">
+                  OPERATIONAL
                 </div>
               </div>
+
+              <div className="w-4 h-4 rounded-full bg-green-400 shadow-[0_0_20px_rgba(74,222,128,0.8)]" />
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Projects */}
-      <section id="projects" className="relative z-10 max-w-7xl mx-auto px-6 py-32">
-        <div className="text-center mb-20">
-          <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
-            Featured Systems
-          </div>
-
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Active Projects
-          </h2>
-
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Advanced automation and infrastructure systems
-            designed for performance and reliability.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: 'Home Assistant Core',
-              icon: '🏠',
-              desc: 'Smart home dashboards, Zigbee2MQTT integration and automation workflows.',
-              status: 'ONLINE'
-            },
-            {
-              title: 'Proxmox Infrastructure',
-              icon: '🖥️',
-              desc: 'Virtualization cluster with containers, backups and NAS integration.',
-              status: 'STABLE'
-            },
-            {
-              title: 'WLED Matrix System',
-              icon: '💡',
-              desc: 'Custom LED matrix animations with live football and automation data.',
-              status: 'ACTIVE'
-            }
-          ].map((project, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 hover:-translate-y-2 transition duration-500 hover:border-cyan-400/40 shadow-2xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-blue-500/0 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition duration-500" />
-
-              <div className="relative z-10">
-                <div className="text-5xl mb-6">
-                  {project.icon}
-                </div>
-
-                <div className="inline-flex px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs tracking-widest mb-5">
-                  {project.status}
-                </div>
-
-                <h3 className="text-2xl font-bold mb-4">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-400 leading-7">
-                  {project.desc}
-                </p>
+            {[
+              ["Hypervisor", "Proxmox VE"],
+              ["Automation", "Home Assistant"],
+              ["Media", "Jellyfin"],
+              ["Photos", "Immich"],
+              ["Monitoring", "Grafana"],
+              ["AI", "Ollama"],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="flex justify-between py-4 border-t border-white/10"
+              >
+                <span className="text-gray-500">{label}</span>
+                <span className="text-gray-200 font-medium">{value}</span>
               </div>
-            </div>
-          ))}
+            ))}
+
+          </div>
         </div>
       </section>
 
       {/* Systems */}
-      <section id="systems" className="relative z-10 max-w-6xl mx-auto px-6 py-32">
-        <div className="rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-3xl p-10 md:p-16 shadow-2xl">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+      <section id="systems" className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+
+        <div className="text-center mb-16">
+          <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
+            NodeVault Infrastructure
+          </div>
+
+          <h2 className="text-5xl md:text-6xl font-bold">
+            Active Systems
+          </h2>
+
+          <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto">
+            A selection of the services, platforms and hardware powering
+            the NodeVault homelab.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {systems.map((system) => (
+            <div
+              key={system.name}
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-xl hover:-translate-y-2 hover:border-cyan-400/30 transition duration-500"
+            >
+
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 to-blue-500/0 group-hover:from-cyan-400/10 group-hover:to-blue-500/10 transition duration-500" />
+
+              <div className="relative z-10">
+
+                <div className="text-4xl mb-6">
+                  {system.icon}
+                </div>
+
+                <div className="flex items-center justify-between mb-5">
+
+                  <h3 className="text-xl font-bold">
+                    {system.name}
+                  </h3>
+
+                  <span className="text-[10px] tracking-widest px-2.5 py-1 rounded-full border border-green-400/20 bg-green-400/5 text-green-400">
+                    {system.status}
+                  </span>
+
+                </div>
+
+                <p className="text-gray-500 leading-7">
+                  {system.description}
+                </p>
+
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </section>
+
+      {/* Overview */}
+      <section id="overview" className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] backdrop-blur-xl p-8 md:p-12">
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+
             <div>
-              <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
+              <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-5">
                 Infrastructure Metrics
               </div>
 
-              <h2 className="text-5xl font-bold leading-tight">
+              <h2 className="text-5xl font-bold">
                 Live System
                 <br />
                 Overview
               </h2>
+
+              <p className="mt-6 text-gray-400 leading-7 max-w-lg">
+                The NodeVault environment combines virtualization,
+                automation, monitoring, media, AI and smart-home
+                infrastructure into one self-hosted ecosystem.
+              </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 min-w-[320px]">
+            <div className="grid grid-cols-2 gap-5">
+
               {[
-                ['32', 'Automations'],
-                ['18', 'Zigbee Devices'],
-                ['99.9%', 'Uptime'],
-                ['24/7', 'Monitoring']
-              ].map((item, index) => (
+                ["12+", "Core Systems"],
+                ["24/7", "Monitoring"],
+                ["100%", "Self Hosted"],
+                ["∞", "Possibilities"],
+              ].map(([number, label]) => (
                 <div
-                  key={index}
-                  className="rounded-2xl border border-white/10 bg-black/20 p-6 text-center"
+                  key={label}
+                  className="rounded-2xl border border-white/10 bg-black/30 p-7 text-center"
                 >
-                  <div className="text-3xl font-black text-cyan-400 mb-2">
-                    {item[0]}
+                  <div className="text-4xl font-bold text-cyan-400">
+                    {number}
                   </div>
 
-                  <div className="text-sm text-gray-400 uppercase tracking-widest">
-                    {item[1]}
+                  <div className="mt-3 text-xs uppercase tracking-widest text-gray-500">
+                    {label}
                   </div>
                 </div>
               ))}
+
             </div>
+
           </div>
         </div>
       </section>
 
       {/* Contact */}
       <section id="contact" className="relative z-10 max-w-4xl mx-auto px-6 py-32">
-        <div className="text-center mb-14">
-          <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
+
+        <div className="text-center">
+
+          <div className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-5">
             Contact
           </div>
 
-          <h2 className="text-5xl font-bold mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold">
             Connect To NodeVault
           </h2>
 
-          <p className="text-gray-400 text-lg">
-            Interested in automation, homelab systems or futuristic interfaces?
+          <p className="mt-6 text-gray-400 text-lg">
+            Interested in homelabs, automation, infrastructure or
+            self-hosted technology?
           </p>
-        </div>
 
-        <div className="rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-3xl p-8 md:p-10 shadow-2xl">
-          <form className="space-y-6">
-            <div>
-              <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3">
-                Name
-              </label>
+          <a
+            href="mailto:hello@nodevault.dk"
+            className="inline-block mt-10 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-600 font-semibold hover:scale-105 transition"
+          >
+            Get In Touch
+          </a>
 
-              <input
-                type="text"
-                placeholder="Enter your name"
-                className="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 outline-none focus:border-cyan-400 transition"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3">
-                Email
-              </label>
-
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 outline-none focus:border-cyan-400 transition"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm uppercase tracking-widest text-gray-400 mb-3">
-                Message
-              </label>
-
-              <textarea
-                rows={6}
-                placeholder="Write your message..."
-                className="w-full rounded-2xl border border-white/10 bg-black/30 px-5 py-4 outline-none focus:border-cyan-400 transition resize-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-lg hover:scale-[1.02] transition duration-300 shadow-2xl shadow-cyan-500/20"
-            >
-              Send Transmission
-            </button>
-          </form>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/10 py-10 text-center text-gray-500 text-sm">
-        © 2026 NODEVAULT — Infrastructure • Automation • Smart Systems
+      <footer className="relative z-10 border-t border-white/10 py-8">
+
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-4 text-sm text-gray-600">
+
+          <span>
+            © {new Date().getFullYear()} NodeVault
+          </span>
+
+          <span>
+            Homelab · Automation · Infrastructure · Self Hosting
+          </span>
+
+        </div>
+
       </footer>
+
     </div>
-  )
+  );
 }
